@@ -1,0 +1,4 @@
+- source: template.qmd
+  quarto-pub:
+    - id: 477c18b6-ffcd-4268-967d-bd4001adc1a6
+      url: https://katie.quarto.pub/positconf(2025-slide-template

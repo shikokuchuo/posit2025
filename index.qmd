@@ -1,0 +1,331 @@
+---
+title: "Purrrfectly parallel <br>Purrrfectly distributed"
+subtitle: "🔗 [shikokuchuo.net/posit2025](https://shikokuchuo.net/posit2025)"
+author: "Charlie Gao (Open Source, Posit)"
+title-slide-attributes: 
+  data-background-color: black
+  data-background-image:  _extensions/positconfslides/assets/backgrounds/title-slide-dark.svg
+  data-background-size: contain
+format:
+  positconfslides-revealjs: 
+    slide-number: c/t
+    code-copy: true
+    center-title-slide: false
+    code-line-numbers: false
+    code-link: true
+    code-overflow: wrap
+    highlight-style: a11y
+    width: "1600"
+    height: "900"
+    incremental: true
+    filters:
+      - positconfslides
+editor: 
+  markdown: 
+    wrap: 72
+---
+
+##  {.skyline}
+
+::: larger
+Parallel purrr
+:::
+
+::: large
+Why now?
+:::
+
+##  {.skyline}
+
+::: larger
+Parallel purrr
+:::
+
+::: large
+Why now?
+:::
+
+<br /><br />
+
+::: larger
+Distributed purrr
+:::
+
+::: large
+Why + how to use
+:::
+
+##  {.content-white}
+
+![](images/the-tidyverse.png)
+
+
+## Ecosystem Evolution {.content-light}
+
+:::::::: columns
+::: {.column width="25%" .fragment}
+![](images/purrr.png){width="300"}
+
+Sept 2015
+:::
+
+::: {.column width="25%" .fragment}
+![](images/furrr.png){width="300"}
+
+May 2018
+:::
+
+::: {.column width="25%" .fragment}
+![](images/mirai.png){width="300"}
+
+Feb 2022
+:::
+
+:::: {.column width="25%" .fragment}
+<br />
+
+![](images/purrr.png){width="150"} ![](images/mirai.png){width="150"}
+
+<br /><br />
+purrr x mirai ?
+::::
+::::::::
+
+## Ecosystem Evolution {.content-light}
+
+:::::::: columns
+::: {.column width="25%"}
+![](images/purrr.png){width="300"}
+
+Sept 2015
+:::
+
+::: {.column width="25%"}
+![](images/furrr.png){width="300"}
+
+May 2018
+:::
+
+::: {.column width="25%"}
+![](images/mirai.png){width="300"}
+
+Feb 2022
+:::
+
+:::: {.column width="25%"}
+![](images/forcats.png){width="300"}
+
+July 2025
+::::
+::::::::
+
+## purrr x mirai {.skyline}
+
+![](images/purrr.png){width="180"} ![](images/mirai.png){width="180"}
+
+::: largest
+Design
+:::
+
+Use reliably in programming
+
+## mirai - Design Philosophy {.content-light}
+
+<br />
+
+### ⚙️ Modern Foundation
+
+-   NNG - IPC / TCP / secure TLS - x-language data format support
+
+### ⚡️ Extreme Performance
+
+-   Scales to millions of tasks \| 1,000x efficiency \| zero-latency
+    promises
+
+### 🚀 Production First
+
+-   Clear evaluation model \| minimal complexity \| no hidden state
+
+### 🌐 Deploy Everywhere
+
+-   Modular compute profiles \| local, remote (SSH), cluster (Slurm,
+    SGE, LSF, PBC)
+
+## mirai {.skyline}
+
+![](images/purrr.png){width="180"} ![](images/mirai.png){width="180"}
+![](images/tidyverse.svg){width="180"}
+![](images/shiny.png){width="180"} ![](images/plumber2.svg){width="180"}
+![](images/tidymodels.png){width="180"}
+
+::: largest
+ecosystem
+:::
+
+## {.skyline}
+
+::: largest
+distributed
+:::
+
+![](images/forcats.png){width="180"} ![](images/mirai.png){width="180"}
+
+## New `in_parallel()` adverb {.content-light}
+
+<br />
+
+Map:
+
+<br />
+
+``` r
+mtcars |> map(\(x) mean(x))
+```
+
+## New `in_parallel()` adverb {.content-light}
+
+<br />
+
+Map in parallel:
+
+<br />
+
+``` r
+mtcars |> map(in_parallel(\(x) mean(x)))
+```
+
+
+## Parallel purrr {.content-light}
+
+### Local compute
+
+``` r
+library(mirai)
+
+daemons(url = local_url()) # 📡️
+
+launch_local(6) # 🛰️
+```
+
+::: {.fragment}
+or
+
+``` r
+daemons(6)
+```
+:::
+
+## Distributed purrr {.content-light}
+
+### Replace local compute
+
+Remote:
+
+``` r
+config <- ssh_config("ssh://hostname")
+
+# daemons(url = local_url())
+daemons(url = host_url()) # 📡️
+
+#launch_local(6)
+launch_remote(6, remote = config) # 🛰️
+```
+
+::: {.fragment}
+or
+
+``` r
+daemons(n = 6, url = host_url(), remote = config)
+```
+:::
+
+
+## SSH Tunneling
+
+Remote:
+
+``` r
+# config <- ssh_config("ssh://hostname")
+config <- ssh_config("ssh://hostname", tunnel = TRUE)
+
+# daemons(url = host_url())
+daemons(url = local_url(tcp = TRUE)) # 📡️
+
+launch_remote(6, remote = config) # 🛰️
+```
+
+::: {.fragment}
+or
+
+``` r
+daemons(n = 6, url = local_url(tcp = TRUE), remote = config)
+```
+:::
+
+## Distributed purrr {.content-light}
+
+### Extend local compute
+
+Remote:
+
+``` r
+config <- ssh_config("ssh://hostname")
+
+daemons(url = host_url())
+
+launch_remote(6, remote = config)
+
+launch_local(6)
+```
+::: {.fragment}
+<br />
+
+Total: 12 daemons
+:::
+
+## Distributed purrr {.content-light}
+
+### Targeted compute
+
+Local + remote:
+
+``` r
+daemons(6) # .compute = "default"
+
+daemons(n = 6, url = host_url(), remote = config, .compute = "gpu")
+```
+
+::: {.fragment}
+Use:
+
+``` r
+x |> map(in_parallel(\(x) mypkg::fn(x))) # run locally
+
+with_daemons("gpu", {
+  x|> map(in_parallel(\(x) mypkg::fn(x))) # run on remote
+})
+```
+:::
+
+##  {.skyline}
+
+![](images/purrr.png){width="180"} ![](images/mirai.png){width="180"}
+
+::: larger
+Distributed purrr
+:::
+
+::: large
+1.  Replace local compute
+2.  Extend local compute
+3.  Targeted compute
+:::
+
+##  {.cubes}
+
+![](images/qr.png){width="400"}
+<br><br>
+
+::: largest
+Thank you.
+:::
