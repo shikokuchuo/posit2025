@@ -260,6 +260,10 @@ or
 ``` r
 daemons(n = 6, url = local_url(tcp = TRUE), remote = config)
 ```
+
+<br />
+
+Running remotely: 6 daemons
 :::
 
 ## Distributed purrr {.content-light}
