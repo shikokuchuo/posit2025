@@ -401,10 +401,14 @@ Charlie Gao (Open Source, Posit)
 <p>or</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="fragment">
+<p><em>(must be able to accept incoming connections)</em></p>
+</div>
 </div></div>
 </section>
 <section class="slide level2">
 <h2>SSH Tunneling</h2>
+<p><em>connections are local-only, bridged by secure SSH tunnel</em></p>
 <p>Remote:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># config &lt;- ssh_config("ssh://hostname")</span></span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>, <span class="at">tunnel =</span> <span class="cn">TRUE</span>)</span>
@@ -445,7 +449,7 @@ Charlie Gao (Open Source, Posit)
 <div class="columns">
 <div class="column" style="width:100%;">
 <h2>Distributed purrr</h2>
-<h3 id="targeted-compute">Targeted compute</h3>
+<h3 id="differentiated-compute">Differentiated compute</h3>
 <p>Local + remote:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="dv">6</span>) <span class="co"># .compute = "default"</span></span>
 <span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
@@ -473,7 +477,7 @@ Charlie Gao (Open Source, Posit)
 <ol type="1">
 <li class="fragment">Replace local compute</li>
 <li class="fragment">Extend local compute</li>
-<li class="fragment">Targeted compute</li>
+<li class="fragment">Differentiated compute</li>
 </ol>
 </div>
 </div></div>

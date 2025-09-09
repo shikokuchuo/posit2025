@@ -237,10 +237,19 @@ or
 ``` r
 daemons(n = 6, url = host_url(), remote = config)
 ```
+
+:::
+
+::: {.fragment}
+
+*(must be able to accept incoming connections)*
+
 :::
 
 
 ## SSH Tunneling
+
+*connections are local-only, bridged by secure SSH tunnel*
 
 Remote:
 
@@ -289,7 +298,7 @@ Total: 12 daemons
 
 ## Distributed purrr {.content-light}
 
-### Targeted compute
+### Differentiated compute
 
 Local + remote:
 
@@ -322,7 +331,7 @@ Distributed purrr
 ::: large
 1.  Replace local compute
 2.  Extend local compute
-3.  Targeted compute
+3.  Differentiated compute
 :::
 
 ##  {.cubes}
