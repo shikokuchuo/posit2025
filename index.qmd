@@ -135,7 +135,7 @@ Use reliably in programming
 
 ### ⚙️ Modern Foundation
 
--   NNG - IPC / TCP / secure TLS - x-language data format support
+-   NNG | IPC / TCP / secure TLS | x-language data format support
 
 ### ⚡️ Extreme Performance
 
@@ -148,8 +148,8 @@ Use reliably in programming
 
 ### 🌐 Deploy Everywhere
 
--   Modular compute profiles \| local, remote (SSH), cluster (Slurm,
-    SGE, LSF, PBC)
+-   Local, remote (SSH), cluster (Slurm,
+    SGE, LSF, PBC) \| modular compute profiles
 
 ## mirai {.skyline}
 
