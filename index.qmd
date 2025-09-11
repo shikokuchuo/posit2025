@@ -164,11 +164,17 @@ ecosystem
 
 ## {.skyline}
 
-::: largest
-distributed
+![](images/purrr.png){width="180"} ![](images/mirai.png){width="180"}
+
+::: larger
+distributed purrr
 :::
 
-![](images/forcats.png){width="180"} ![](images/mirai.png){width="180"}
+::: large
+1.  Replace local compute
+2.  Extend local compute
+3.  Differentiated compute
+:::
 
 ## New `in_parallel()` adverb {.content-light}
 
@@ -328,16 +334,19 @@ with_daemons("gpu", {
 Distributed purrr
 :::
 
+::::{.nonincremental}
 ::: large
 1.  Replace local compute
 2.  Extend local compute
 3.  Differentiated compute
 :::
+::::
 
 ##  {.cubes}
 
-![](images/qr.png){width="400"}
-<br><br>
+![](images/purrr.png){width="180"} ![](images/mirai.png){width="180"}
+
+![](images/qr.png){width="330"}
 
 ::: largest
 Thank you.

@@ -1,4 +1,4 @@
-// quarto-scss-analysis-annotation { "quarto-version": "1.7.33" }
+// quarto-scss-analysis-annotation { "quarto-version": "1.8.24" }
 
 // quarto-scss-analysis-annotation { "origin": "'use' section from format" }
 
@@ -1052,8 +1052,7 @@ details > summary > p:only-child {
 }
 
 // codeCopy
-pre.sourceCode,
-code.sourceCode {
+div.code-copy-outer-scaffold {
   position: relative;
 }
 

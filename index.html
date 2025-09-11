@@ -6,9 +6,9 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-c2894b54f4b00a27b9651b11dcf5df54.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-f54fa83ccd8f86fe7238c9291c42d766.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="index_files/libs/quarto-contrib/posit_slides/posit-slides.js"></script><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.33">
+  <meta name="generator" content="quarto-1.8.24">
 
   <meta name="author" content="Charlie Gao (Open Source, Posit)">
   <title>Purrrfectly parallel  Purrrfectly distributed</title>
@@ -96,7 +96,7 @@
     code span.vs { color: #008000; } /* VerbatimString */
     code span.wa { color: #696969; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-0a7acbb1e5a721efbfc55894fafa638e.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-aac0645311e01dc7bf5ca56567441917.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -338,10 +338,17 @@ Charlie Gao (Open Source, Posit)
 <div class="columns">
 <div class="column" style="width:100%;">
 <h2></h2>
-<div class="largest">
-<p>distributed</p>
+<p><img data-src="images/purrr.png" width="180"> <img data-src="images/mirai.png" width="180"></p>
+<div class="larger">
+<p>distributed purrr</p>
 </div>
-<p><img data-src="images/forcats.png" width="180"> <img data-src="images/mirai.png" width="180"></p>
+<div class="large">
+<ol type="1">
+<li class="fragment">Replace local compute</li>
+<li class="fragment">Extend local compute</li>
+<li class="fragment">Differentiated compute</li>
+</ol>
+</div>
 </div></div>
 </section>
 <section class="slide level2" data-background-image="_extensions/positconfslides/assets/backgrounds/content-light.svg" data-background-size="contain">
@@ -352,7 +359,7 @@ Charlie Gao (Open Source, Posit)
 <p><br></p>
 <p>Map:</p>
 <p><br></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> <span class="fu">map</span>(\(x) <span class="fu">mean</span>(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> <span class="fu">map</span>(\(x) <span class="fu">mean</span>(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section class="slide level2" data-background-image="_extensions/positconfslides/assets/backgrounds/content-light.svg" data-background-size="contain">
@@ -363,7 +370,7 @@ Charlie Gao (Open Source, Posit)
 <p><br></p>
 <p>Map in parallel:</p>
 <p><br></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> <span class="fu">map</span>(<span class="fu">in_parallel</span>(\(x) <span class="fu">mean</span>(x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> <span class="fu">map</span>(<span class="fu">in_parallel</span>(\(x) <span class="fu">mean</span>(x)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div></div>
 </section>
 <section class="slide level2" data-background-image="_extensions/positconfslides/assets/backgrounds/content-light.svg" data-background-size="contain">
@@ -372,14 +379,14 @@ Charlie Gao (Open Source, Posit)
 <div class="column" style="width:100%;">
 <h2>Parallel purrr</h2>
 <h3 id="local-compute">Local compute</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mirai)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mirai)</span>
 <span id="cb3-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">local_url</span>()) <span class="co"># 📡️</span></span>
 <span id="cb3-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_local</span>(<span class="dv">6</span>) <span class="co"># 🛰️</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_local</span>(<span class="dv">6</span>) <span class="co"># 🛰️</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>or</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </section>
@@ -390,16 +397,16 @@ Charlie Gao (Open Source, Posit)
 <h2>Distributed purrr</h2>
 <h3 id="replace-local-compute">Replace local compute</h3>
 <p>Remote:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>)</span>
 <span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># daemons(url = local_url())</span></span>
 <span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">host_url</span>()) <span class="co"># 📡️</span></span>
 <span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#launch_local(6)</span></span>
-<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config) <span class="co"># 🛰️</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config) <span class="co"># 🛰️</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>or</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
 <p><em>(must be able to accept incoming connections)</em></p>
@@ -410,16 +417,16 @@ Charlie Gao (Open Source, Posit)
 <h2>SSH Tunneling</h2>
 <p><em>connections are local-only, bridged by secure SSH tunnel</em></p>
 <p>Remote:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># config &lt;- ssh_config("ssh://hostname")</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># config &lt;- ssh_config("ssh://hostname")</span></span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>, <span class="at">tunnel =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># daemons(url = host_url())</span></span>
 <span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">local_url</span>(<span class="at">tcp =</span> <span class="cn">TRUE</span>)) <span class="co"># 📡️</span></span>
 <span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config) <span class="co"># 🛰️</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config) <span class="co"># 🛰️</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>or</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">local_url</span>(<span class="at">tcp =</span> <span class="cn">TRUE</span>), <span class="at">remote =</span> config)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">local_url</span>(<span class="at">tcp =</span> <span class="cn">TRUE</span>), <span class="at">remote =</span> config)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><br></p>
 <p>Running remotely: 6 daemons</p>
 </div>
@@ -431,13 +438,13 @@ Charlie Gao (Open Source, Posit)
 <h2>Distributed purrr</h2>
 <h3 id="extend-local-compute">Extend local compute</h3>
 <p>Remote:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>)</span>
 <span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">host_url</span>())</span>
 <span id="cb9-4"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config)</span>
 <span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_local</span>(<span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_local</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p><br></p>
 <p>Total: 12 daemons</p>
@@ -451,16 +458,16 @@ Charlie Gao (Open Source, Posit)
 <h2>Distributed purrr</h2>
 <h3 id="differentiated-compute">Differentiated compute</h3>
 <p>Local + remote:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="dv">6</span>) <span class="co"># .compute = "default"</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="dv">6</span>) <span class="co"># .compute = "default"</span></span>
 <span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config, <span class="at">.compute =</span> <span class="st">"gpu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config, <span class="at">.compute =</span> <span class="st">"gpu"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="fragment">
 <p>Use:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">map</span>(<span class="fu">in_parallel</span>(\(x) mypkg<span class="sc">::</span><span class="fu">fn</span>(x))) <span class="co"># run locally</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">map</span>(<span class="fu">in_parallel</span>(\(x) mypkg<span class="sc">::</span><span class="fu">fn</span>(x))) <span class="co"># run locally</span></span>
 <span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">with_daemons</span>(<span class="st">"gpu"</span>, {</span>
 <span id="cb11-4"><a href="" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">|&gt;</span> <span class="fu">map</span>(<span class="fu">in_parallel</span>(\(x) mypkg<span class="sc">::</span><span class="fu">fn</span>(x))) <span class="co"># run on remote</span></span>
-<span id="cb11-5"><a href="" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a href="" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div></div>
 </section>
@@ -475,9 +482,9 @@ Charlie Gao (Open Source, Posit)
 </div>
 <div class="large">
 <ol type="1">
-<li class="fragment">Replace local compute</li>
-<li class="fragment">Extend local compute</li>
-<li class="fragment">Differentiated compute</li>
+<li>Replace local compute</li>
+<li>Extend local compute</li>
+<li>Differentiated compute</li>
 </ol>
 </div>
 </div></div>
@@ -488,7 +495,8 @@ Charlie Gao (Open Source, Posit)
 <div class="column" style="width:35%;">
 &nbsp;
 </div><div class="column" style="width:65%;">
-<p><img data-src="images/qr.png" width="400"> <br><br></p>
+<p><img data-src="images/purrr.png" width="180"> <img data-src="images/mirai.png" width="180"></p>
+<p><img data-src="images/qr.png" width="330"></p>
 <div class="largest">
 <p>Thank you.</p>
 </div>
@@ -687,7 +695,7 @@ Charlie Gao (Open Source, Posit)
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],
@@ -761,13 +769,14 @@ Charlie Gao (Open Source, Posit)
           e.clearSelection();
         }
         const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
             }
-            return codeEl.innerText;
+          }
+          return codeEl.innerText;
         }
         const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
           text: getTextToCopy
