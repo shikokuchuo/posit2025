@@ -11,8 +11,8 @@ id = '019949fb-3f69-3579-7080-d10ad87c8924'
 dashboard_url = 'https://connect.posit.cloud/shikokuchuo/content/019949fb-3f69-3579-7080-d10ad87c8924'
 direct_url = 'https://019949fb-3f69-3579-7080-d10ad87c8924.share.connect.posit.cloud'
 logs_url = 'https://connect.posit.cloud/shikokuchuo/content/019949fb-3f69-3579-7080-d10ad87c8924/history'
-deployed_at = '2025-09-14T16:48:13-04:00'
-bundle_id = '019949fc-2aa1-3611-fb8d-78893e1d4375'
+deployed_at = '2025-09-14T16:59:10-04:00'
+bundle_id = '01994a06-2b4d-4155-c308-a1413269d737'
 files = [
   '.posit/publish/deployments/deployment-PGKB.toml',
   '.posit/publish/posit2025-SI1S.toml',
