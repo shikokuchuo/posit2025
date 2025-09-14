@@ -135,7 +135,7 @@ Use reliably in programming
 
 ### ⚙️ Modern Foundation
 
--   NNG | IPC / TCP / secure TLS | x-language data format support
+-   NNG | IPC / TCP / secure TLS | x-language data format support e.g. Arrow
 
 ### ⚡️ Extreme Performance
 
