@@ -1,6 +1,6 @@
 ---
 title: "Purrrfectly parallel <br>Purrrfectly distributed"
-subtitle: "🔗 [shikokuchuo.net/posit2025](https://shikokuchuo.net/posit2025)"
+subtitle: "🔗 [https://shikokuchuo-posit2025.share.connect.posit.cloud](https://shikokuchuo-posit2025.share.connect.posit.cloud)"
 author: "Charlie Gao (Open Source, Posit)"
 title-slide-attributes: 
   data-background-color: black
@@ -253,7 +253,7 @@ daemons(n = 6, url = host_url(), remote = config)
 :::
 
 
-## SSH Tunneling
+## SSH Tunneling {.content-light}
 
 *connections are local-only, bridged by secure SSH tunnel*
 
