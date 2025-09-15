@@ -396,7 +396,8 @@ Charlie Gao (Open Source, Posit)
 <div class="column" style="width:100%;">
 <h2>Distributed purrr</h2>
 <h3 id="replace-local-compute">Replace local compute</h3>
-<p>SSH &gt; local network | cloud instance</p>
+<p>SSH to launch daemons on local network | cloud instance</p>
+<div class="fragment">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>) <span class="co"># or IP address</span></span>
 <span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># daemons(url = local_url())</span></span>
@@ -404,6 +405,7 @@ Charlie Gao (Open Source, Posit)
 <span id="cb5-5"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-6"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co">#launch_local(6)</span></span>
 <span id="cb5-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config) <span class="co"># 🛰️</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="fragment">
 <p>or</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -418,8 +420,9 @@ Charlie Gao (Open Source, Posit)
 <div class="columns">
 <div class="column" style="width:100%;">
 <h2>SSH Tunneling</h2>
-<h3 id="avoids-opening-ports">Avoids opening ports</h3>
+<h3 id="avoids-opening-ports-firewall-compliant">Avoids opening ports (firewall-compliant)</h3>
 <p>Connections are local-only, bridged by SSH tunnel</p>
+<div class="fragment">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># config &lt;- ssh_config("ssh://hostname")</span></span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>, <span class="at">tunnel =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
@@ -427,6 +430,7 @@ Charlie Gao (Open Source, Posit)
 <span id="cb7-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">local_url</span>(<span class="at">tcp =</span> <span class="cn">TRUE</span>)) <span class="co"># 📡️</span></span>
 <span id="cb7-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config) <span class="co"># 🛰️</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="fragment">
 <p>or</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">local_url</span>(<span class="at">tcp =</span> <span class="cn">TRUE</span>), <span class="at">remote =</span> config)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -440,7 +444,8 @@ Charlie Gao (Open Source, Posit)
 <div class="column" style="width:100%;">
 <h2>Distributed purrr</h2>
 <h3 id="extend-local-compute">Extend local compute</h3>
-<p>Use (many) other machines</p>
+<p>Use both local and remote daemons at same time</p>
+<div class="fragment">
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>)</span>
 <span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">host_url</span>())</span>
@@ -448,6 +453,7 @@ Charlie Gao (Open Source, Posit)
 <span id="cb9-5"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_remote</span>(<span class="dv">6</span>, <span class="at">remote =</span> config)</span>
 <span id="cb9-6"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-7"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">launch_local</span>(<span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="fragment">
 <p><br></p>
 <p>Total: 12 daemons</p>
@@ -460,12 +466,15 @@ Charlie Gao (Open Source, Posit)
 <div class="column" style="width:100%;">
 <h2>Distributed purrr</h2>
 <h3 id="differentiated-compute">Differentiated compute</h3>
-<p>Local + remote:</p>
+<p>Driven by requirements e.g.&nbsp;GPU</p>
+<div class="fragment">
+<p>Set up local + remote compute profiles:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="dv">6</span>) <span class="co"># .compute = "default"</span></span>
 <span id="cb10-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config, <span class="at">.compute =</span> <span class="st">"gpu"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <div class="fragment">
-<p>Use:</p>
+<p>Use <code>with_daemons()</code> to direct compute:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">map</span>(<span class="fu">in_parallel</span>(\(x) mypkg<span class="sc">::</span><span class="fu">fn</span>(x))) <span class="co"># run locally</span></span>
 <span id="cb11-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">with_daemons</span>(<span class="st">"gpu"</span>, {</span>

@@ -225,8 +225,9 @@ daemons(6)
 
 ### Replace local compute
 
-SSH > local network | cloud instance
+SSH to launch daemons on local network | cloud instance
 
+::: {.fragment}
 ``` r
 config <- ssh_config("ssh://hostname") # or IP address
 
@@ -236,7 +237,7 @@ daemons(url = host_url()) # 📡️
 #launch_local(6)
 launch_remote(6, remote = config) # 🛰️
 ```
-
+:::
 ::: {.fragment}
 or
 
@@ -255,10 +256,11 @@ daemons(n = 6, url = host_url(), remote = config)
 
 ## SSH Tunneling {.content-light}
 
-### Avoids opening ports
+### Avoids opening ports (firewall-compliant)
 
 Connections are local-only, bridged by SSH tunnel
 
+::: {.fragment}
 ``` r
 # config <- ssh_config("ssh://hostname")
 config <- ssh_config("ssh://hostname", tunnel = TRUE)
@@ -268,7 +270,7 @@ daemons(url = local_url(tcp = TRUE)) # 📡️
 
 launch_remote(6, remote = config) # 🛰️
 ```
-
+:::
 ::: {.fragment}
 or
 
@@ -283,8 +285,9 @@ Running remotely: 6 daemons
 
 ### Extend local compute
 
-Use (many) other machines
+Use both local and remote daemons at same time
 
+::: {.fragment}
 ``` r
 config <- ssh_config("ssh://hostname")
 
@@ -294,6 +297,7 @@ launch_remote(6, remote = config)
 
 launch_local(6)
 ```
+:::
 ::: {.fragment}
 <br />
 
@@ -304,16 +308,19 @@ Total: 12 daemons
 
 ### Differentiated compute
 
-Local + remote:
+Driven by requirements e.g. GPU
+
+::: {.fragment}
+Set up local + remote compute profiles:
 
 ``` r
 daemons(6) # .compute = "default"
 
 daemons(n = 6, url = host_url(), remote = config, .compute = "gpu")
 ```
-
+:::
 ::: {.fragment}
-Use:
+Use `with_daemons()` to direct compute:
 
 ``` r
 x |> map(in_parallel(\(x) mypkg::fn(x))) # run locally
