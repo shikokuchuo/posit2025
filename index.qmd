@@ -225,10 +225,10 @@ daemons(6)
 
 ### Replace local compute
 
-Remote:
+SSH > local network | cloud instance
 
 ``` r
-config <- ssh_config("ssh://hostname")
+config <- ssh_config("ssh://hostname") # or IP address
 
 # daemons(url = local_url())
 daemons(url = host_url()) # 📡️
@@ -248,16 +248,16 @@ daemons(n = 6, url = host_url(), remote = config)
 
 ::: {.fragment}
 
-*(must be able to accept incoming connections)*
+*(host must be able to accept incoming connections)*
 
 :::
 
 
 ## SSH Tunneling {.content-light}
 
-*connections are local-only, bridged by secure SSH tunnel*
+### Avoids opening ports
 
-Remote:
+Connections are local-only, bridged by SSH tunnel
 
 ``` r
 # config <- ssh_config("ssh://hostname")
@@ -276,8 +276,6 @@ or
 daemons(n = 6, url = local_url(tcp = TRUE), remote = config)
 ```
 
-<br />
-
 Running remotely: 6 daemons
 :::
 
@@ -285,7 +283,7 @@ Running remotely: 6 daemons
 
 ### Extend local compute
 
-Remote:
+Use (many) other machines
 
 ``` r
 config <- ssh_config("ssh://hostname")

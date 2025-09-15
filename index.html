@@ -396,8 +396,8 @@ Charlie Gao (Open Source, Posit)
 <div class="column" style="width:100%;">
 <h2>Distributed purrr</h2>
 <h3 id="replace-local-compute">Replace local compute</h3>
-<p>Remote:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>)</span>
+<p>SSH &gt; local network | cloud instance</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>) <span class="co"># or IP address</span></span>
 <span id="cb5-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># daemons(url = local_url())</span></span>
 <span id="cb5-4"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">host_url</span>()) <span class="co"># 📡️</span></span>
@@ -409,7 +409,7 @@ Charlie Gao (Open Source, Posit)
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">host_url</span>(), <span class="at">remote =</span> config)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="fragment">
-<p><em>(must be able to accept incoming connections)</em></p>
+<p><em>(host must be able to accept incoming connections)</em></p>
 </div>
 </div></div>
 </section>
@@ -418,8 +418,8 @@ Charlie Gao (Open Source, Posit)
 <div class="columns">
 <div class="column" style="width:100%;">
 <h2>SSH Tunneling</h2>
-<p><em>connections are local-only, bridged by secure SSH tunnel</em></p>
-<p>Remote:</p>
+<h3 id="avoids-opening-ports">Avoids opening ports</h3>
+<p>Connections are local-only, bridged by SSH tunnel</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="co"># config &lt;- ssh_config("ssh://hostname")</span></span>
 <span id="cb7-2"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>, <span class="at">tunnel =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-3"><a href="" aria-hidden="true" tabindex="-1"></a></span>
@@ -430,7 +430,6 @@ Charlie Gao (Open Source, Posit)
 <div class="fragment">
 <p>or</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">n =</span> <span class="dv">6</span>, <span class="at">url =</span> <span class="fu">local_url</span>(<span class="at">tcp =</span> <span class="cn">TRUE</span>), <span class="at">remote =</span> config)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><br></p>
 <p>Running remotely: 6 daemons</p>
 </div>
 </div></div>
@@ -441,7 +440,7 @@ Charlie Gao (Open Source, Posit)
 <div class="column" style="width:100%;">
 <h2>Distributed purrr</h2>
 <h3 id="extend-local-compute">Extend local compute</h3>
-<p>Remote:</p>
+<p>Use (many) other machines</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="" aria-hidden="true" tabindex="-1"></a>config <span class="ot">&lt;-</span> <span class="fu">ssh_config</span>(<span class="st">"ssh://hostname"</span>)</span>
 <span id="cb9-2"><a href="" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">daemons</span>(<span class="at">url =</span> <span class="fu">host_url</span>())</span>
